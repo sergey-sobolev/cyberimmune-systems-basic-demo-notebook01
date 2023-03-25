@@ -1,0 +1,16 @@
+@startuml "architecture-policy"
+
+title "Доступ к базе данных"
+
+rectangle "Файловая\nсистема" as filesys #red {
+    artifact "Критичные\nданные" as critical_artifacts #green
+    artifact "Некритичные\nданные" as other_artifacts #red
+ }
+rectangle "База\nданных" as db #red
+rectangle "Обработчик\nданных" as dataproc #yellow
+
+db <-[#red]-> filesys
+dataproc -[#green]> db
+dataproc <-[#red] db
+
+@enduml
